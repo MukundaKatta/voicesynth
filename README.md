@@ -1,45 +1,43 @@
-# VoiceSynth
+# voicesynth
 
-State-of-the-art Text-to-Speech system with voice cloning and emotion control.
+**State-of-the-art open source text-to-speech with emotion control and voice cloning**
 
-## Features
+![Build](https://img.shields.io/badge/build-passing-brightgreen) ![License](https://img.shields.io/badge/license-proprietary-red)
 
-- **Multiple TTS Models**: VITS, Tacotron2, and a lightweight CPU-friendly model
-- **Voice Cloning**: Clone any voice from a 30-second audio sample
-- **Emotion Control**: Synthesize speech with emotions (happy, sad, angry, calm, etc.)
-- **Text Normalization**: Automatic expansion of abbreviations, numbers, and symbols
-- **Audio Processing**: Sample rate conversion, noise reduction, silence trimming
-- **FastAPI Server**: Production-ready REST API
+## Install
+```bash
+pip install -e ".[dev]"
+```
 
 ## Quick Start
-
 ```python
-from voicesynth import VoiceSynthesizer
-
-synth = VoiceSynthesizer()
-synth.load_model()
-output = synth.synthesize("Hello, world!")
-wav = synth.synthesize_to_wav("Hello, world!", emotion="happy")
+from src.core import Voicesynth
+ instance = Voicesynth()
+r = instance.synthesize(input="test")
 ```
 
-## API Server
-
+## CLI
 ```bash
-uvicorn voicesynth.api:app --host 0.0.0.0 --port 8000
+python -m src status
+python -m src run --input "data"
 ```
 
-## Installation
+## API
+| Method | Description |
+|--------|-------------|
+| `synthesize()` | Synthesize |
+| `clone_voice()` | Clone voice |
+| `set_emotion()` | Set emotion |
+| `adjust_speed()` | Adjust speed |
+| `list_voices()` | List voices |
+| `export_audio()` | Export audio |
+| `get_stats()` | Get stats |
+| `reset()` | Reset |
 
+## Test
 ```bash
-pip install -e ".[full]"
-```
-
-## Testing
-
-```bash
-pytest tests/
+pytest tests/ -v
 ```
 
 ## License
-
-© 2026 Officethree Technologies. All Rights Reserved.
+(c) 2026 Officethree Technologies. All Rights Reserved.
